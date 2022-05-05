@@ -15,6 +15,7 @@ export class PersonaPage {
     negativeTrendsArea() { return cy.get('.frjSRX') }
     negativeTrendsRemoveButton() { return this.negativeTrendsArea().find('.css-xb97g8') }
     //xx() { return cy.get(".frjsrx").find('.css-xb') }
+    industryInput() { return cy.get('[name="industry"]') }
     
 
 
@@ -41,7 +42,9 @@ export class PersonaPage {
         this.sexSelect2(select).click()
         this.locationInput().type(cy.fakeLibrary.faker.address.city())
         this.companySizeDropdown().click()
-        this.companySizeDropdown().type(companySize)
+        this.companySizeDropdown().type(companySize).type('{enter}')
+        this.industryInput().type(cy.fakeLibrary.faker.address.city()) //!!!
+        //this.industryInput().click()
     
      }
 
@@ -51,7 +54,12 @@ export class PersonaPage {
 
      fillTrendsData() {
          this.negativeTrendsInput().type(cy.fakeLibrary.faker.animal.type()).type('{enter}')
+         this.negativeTrendsInput().click
      }
+
+     ////fillIndustryData() {
+       //  this.industryInput().type(cy.fakeLibrary.faker.company.bs())
+     //}
 
      cleanData() {
          this.createNewButton().click()

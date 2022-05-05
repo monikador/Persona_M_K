@@ -14,7 +14,8 @@ describe("fill in data suite", () => {
         personaPage.createNewButton().should('be.visible')
         personaPage.addFile()
         personaPage.fillPersonaData('Male', selectedCompanySize) // tutaj jeśli nie podam selectCompanySize to będzie wprowadzone '<50' - stosujemy gdy np chcemy zawsze sprawdzić tą samą wartość.
-        
+        personaPage.industryInput().should('be.visible')
+        //personaPage.fillIndustryData()
     
     })
 })
