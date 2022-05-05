@@ -1,4 +1,3 @@
-
 export class MainPage {
 
     buildPersonaButton() { return cy.get('.gdWsuk') }
@@ -6,6 +5,4 @@ export class MainPage {
     open() { return cy.visit("https://persona-generator-front.herokuapp.com") }
 
     openPersonaPage() { return this.buildPersonaButton().click() }
-
-
 }
