@@ -16,9 +16,9 @@ export class PersonaPage {
     negativeTrendsRemoveButton() { return this.negativeTrendsArea().find('.css-xb97g8') }
     //xx() { return cy.get(".frjsrx").find('.css-xb') }
     industryInput() { return cy.get('[name="industry"]') }
+    educationInput() { return cy.get('#react-select-4-input') }
+    familyStatusInput() { return cy.get('#react-select-5-input') }
     
-
-
     /*fillFullNameInput(fullName) { return this.fullNameInput().type(fullName) } 
     fillOccupation(occupation) { return this.occupationInput().type(occupation) }
 
@@ -27,13 +27,11 @@ export class PersonaPage {
         this.fillOccupation(occupation)
     }*/
 
-
     addFile() {
         this.uploadPhotoButton().attachFile('../testData/photo.jpeg');
     }
 
-    fillPersonaData(select, companySize = "<50") { //jeśli w teście nie podam, by została wprowadzona w input losowa wartość to wprowadzi się '<50'.
-
+    fillPersonaData(select, companySize = "<50", education, familyStatus ) { //jeśli w teście nie podam, by została wprowadzona w input losowa wartość to wprowadzi się '<50'.
         this.fullNameInput().type('Monika')
         this.occupationInput().type('QA')
         this.ageInput().type('54')
@@ -45,7 +43,10 @@ export class PersonaPage {
         this.companySizeDropdown().type(companySize).type('{enter}')
         this.industryInput().type(cy.fakeLibrary.faker.address.city()) //!!!
         //this.industryInput().click()
-    
+        this.educationInput().click()
+        this.educationInput().type(education).type('{enter}')
+        this.familyStatusInput().click()
+        this.familyStatusInput().type(familyStatus).type('{enter}')
      }
 
      fillTitledata() {
@@ -64,5 +65,4 @@ export class PersonaPage {
      cleanData() {
          this.createNewButton().click()
      }
-
 }

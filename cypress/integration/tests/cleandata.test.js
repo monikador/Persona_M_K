@@ -1,6 +1,5 @@
-import { PersonaPage } from "../../pages/persona.page";
-import { MainPage } from "../../pages/main.page";
-
+import { PersonaPage } from "../../pages/persona.page"
+import { MainPage } from "../../pages/main.page"
 
 const mainPage = new MainPage()
 const personaPage = new PersonaPage() 
@@ -16,8 +15,5 @@ describe('clean data', () => {
         personaPage.personaTitleInput().should('be.empty')
         personaPage.personaTitleInput().should('have.value',"")
         personaPage.negativeTrendsRemoveButton().should('have.length', defaultNumberOfTrends )
-
-
     })
-    
 });
