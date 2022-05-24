@@ -18,6 +18,8 @@ export class PersonaPage {
     industryInput() { return cy.get('[name="industry"]') }
     educationInput() { return cy.get('#react-select-4-input') }
     familyStatusInput() { return cy.get('#react-select-5-input') }
+    downloadPdfButton() { return cy.get('.kzcgIp') }
+    pdfValidationInfo() { return cy.get('.icVnTA') }
     
     /*fillFullNameInput(fullName) { return this.fullNameInput().type(fullName) } 
     fillOccupation(occupation) { return this.occupationInput().type(occupation) }
@@ -64,5 +66,9 @@ export class PersonaPage {
 
      cleanData() {
          this.createNewButton().click()
+     }
+
+     downloadPdf() {
+         this.downloadPdfButton().click().click()
      }
 }
