@@ -14,5 +14,9 @@
     "familyStatus": [
         "Single",
         "Other"
+    ],
+    "role": [
+        "CTO",
+        "Other"
     ]
 }
