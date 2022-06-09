@@ -15,7 +15,7 @@ describe('downloadPdf', () => {
         mainPage.openPersonaPage()
     })
 
-    it('should not download pdf file', () => {
+    it('should not download pdf file - without tittle of persona', () => {
         personaPage.downloadPdf()
         personaPage.pdfValidationInfo().should('be.visible')
     })
@@ -30,7 +30,7 @@ describe('downloadPdf', () => {
         downloadPdfPopUpPage.clickSend()
         downloadPdfPopUpPage.correctDownloadText().should('have.text','Thank you for choosing Buyer Persona Creator')
     })
-    it('should be info that field is required', () => {
+    it('should be info that e-mail field is required', () => {
         personaPage.fillTitledata()
         personaPage.downloadPdf()
         downloadPdfPopUpPage.fillName()
@@ -39,6 +39,16 @@ describe('downloadPdf', () => {
         downloadPdfPopUpPage.selectAgreement()
         downloadPdfPopUpPage.clickSend()
         downloadPdfPopUpPage.emailValidationInfo().should('be.visible')
+    })
+    it.only('should have info - terms are not accepted', () => {
+        personaPage.fillTitledata()
+        personaPage.downloadPdf()
+        downloadPdfPopUpPage.fillName()
+        downloadPdfPopUpPage.fillEmail()
+        downloadPdfPopUpPage.selectRole(selectedRole)
+        downloadPdfPopUpPage.fillCompany()
+        downloadPdfPopUpPage.clickSend()
+        downloadPdfPopUpPage.agreementValidationInfo().should('be.visible')
     })
 });
 

@@ -8,6 +8,7 @@ export class DownloadPdfPopUpPage {
     sendButton() { return cy.get('#submit-newsletter-modal') }
     emailValidationInfo() { return cy.get('.dNYcbz') }
     correctDownloadText() { return cy.get('.fzFUey').find('.fhLmel'/*, {timeout:6000}*/) }
+    agreementValidationInfo() { return cy.get('.dNYcbz').contains('Required') }
 
     fillName() {
         this.fullNameInput().type('Adam')
