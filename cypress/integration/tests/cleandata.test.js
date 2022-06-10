@@ -16,4 +16,4 @@ describe('clean data', () => {
         personaPage.personaTitleInput().should('have.value',"")
         personaPage.negativeTrendsRemoveButton().should('have.length', defaultNumberOfTrends )
     })
-});
+})

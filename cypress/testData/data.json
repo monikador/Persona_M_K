@@ -18,5 +18,9 @@
     "role": [
         "CTO",
         "Other"
-    ]
+    ],
+    "minSliderValue": 1,
+    "maxSliderValue": 250,
+    "midSliderValue": 125,
+    "belowMidSliderValue": 124
 }

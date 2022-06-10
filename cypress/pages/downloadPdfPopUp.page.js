@@ -25,7 +25,7 @@ export class DownloadPdfPopUpPage {
     selectAgreement() {
         this.agreementLabel().click()
     }
-    clickSend() {
+    downloadPDFConfirm() {
         this.sendButton().click()
     }
 }

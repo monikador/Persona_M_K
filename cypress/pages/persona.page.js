@@ -58,7 +58,6 @@ export class PersonaPage {
         this.familyStatusInput().click()
         this.familyStatusInput().type(familyStatus).type('{enter}')
      }
-     
      fillTitledata() {
         this.personaTitleInput().type(cy.fakeLibrary.faker.name.jobTitle())
      }
@@ -74,7 +73,7 @@ export class PersonaPage {
      cleanData() {
          this.createNewButton().click()
      }
-     downloadPdf() {
+     openDownloadPDFModal() {
          this.downloadPdfButton().click().click()
      }
      addSkill() {
@@ -82,6 +81,9 @@ export class PersonaPage {
      }
      deleteSkill() {
          this.removeSkillButton().eq(0).click({force: true})
+     }
+     deleteRandomSkill(indexToRemove) {
+        this.removeSkillButton().eq(indexToRemove).click({force: true})
      }
      changeSkillValue() { //slider 
          this.skillsValuelButton().as('range').invoke('val', 30).trigger('change')
@@ -92,9 +94,6 @@ export class PersonaPage {
      }
      countSkills() {
          return this.skillsModalData().its('length')
-     }
-     deleteRandomSkill(indexToRemove) {
-         this.removeSkillButton().eq(indexToRemove).click({force: true})
      }
      increaseReachValue() {
          this.reachValueButton().invoke('attr','max').then(value => 

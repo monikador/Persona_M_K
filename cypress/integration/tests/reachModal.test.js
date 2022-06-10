@@ -1,10 +1,11 @@
 import { MainPage } from "../../pages/main.page";
-import { PersonaPage } from "../../pages/persona.page"
+import { PersonaPage } from "../../pages/persona.page";
+import { minSliderValue, maxSliderValue, midSliderValue, belowMidSliderValue } from "../../testData/data.json"
 
 const mainPage = new MainPage()
 const personaPage = new PersonaPage()
 
-const randomReachValue = Math.floor(Math.random() * 124 + 1)
+const randomReachValue = Math.floor(Math.random() * belowMidSliderValue + 1)
 const mathOperator = Math.random() > 0.5 ? "plus" : "minus"
 
 describe('reach modal', () => {
@@ -14,15 +15,15 @@ describe('reach modal', () => {
     })
     it('should increase reach value to maximum possible value', () => {
         personaPage.increaseReachValue()
-        personaPage.reachValueButton().should('have.value', 250)
+        personaPage.reachValueButton().should('have.value', maxSliderValue)
     })
-    it.only('should decrease reach value, to minimum possible value', () => {
+    it('should decrease reach value, to minimum possible value', () => {
         personaPage.decreaseReachValue()
-        personaPage.reachValueButton().should('have.value', 1)
+        personaPage.reachValueButton().should('have.value', minSliderValue)
     })
     it('should change reach value', () => {
         personaPage.changeReachValue(randomReachValue, mathOperator)
-        const correctValueOfChange = mathOperator === 'plus' ? 125 + randomReachValue : 125 - randomReachValue
+        const correctValueOfChange = mathOperator === 'plus' ? midSliderValue + randomReachValue : midSliderValue - randomReachValue
         personaPage.reachValueButton().should('have.value', correctValueOfChange )
-    });
-});
+    })
+})

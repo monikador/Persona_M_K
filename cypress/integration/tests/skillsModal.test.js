@@ -3,8 +3,6 @@ import { PersonaPage } from "../../pages/persona.page"
 
 const mainPage = new MainPage()
 const personaPage = new PersonaPage()
-const dafoultNumberOfSkills = 3  //jak pobrać obecną ilość?
-
 
 describe('skill modal', () => {
     beforeEach( () => {
@@ -13,8 +11,11 @@ describe('skill modal', () => {
     })
 
     it("should add new skill", () => {
-        personaPage.addSkill()
-        personaPage.skillsList().should('have.length', (dafoultNumberOfSkills + 1))
+        personaPage.countSkills().then(numberOfSkill => {
+            const defaultNumberOfSkills = numberOfSkill
+            personaPage.addSkill()
+        personaPage.skillsList().should('have.length', (defaultNumberOfSkills + 1))
+        })
     })
     it("should increase skill value", () => {
         personaPage.changeSkillValue()
@@ -25,14 +26,17 @@ describe('skill modal', () => {
         personaPage.skillNameInput().should('have.value', 'New name')
     })
     it("should delete new skill", () => {
+        personaPage.countSkills().then(numberOfSkill => {
+            const defaultNumberOfSkills = numberOfSkill
         personaPage.deleteSkill()
-        personaPage.skillsList().should('have.length', (dafoultNumberOfSkills - 1))
+        personaPage.skillsList().should('have.length', (defaultNumberOfSkills - 1))
+        })
     })
-    it('should delete random skill', () => {
+    it.only('should delete random skill', () => {
         personaPage.countSkills().then(numberOfSkills => {
             const indexToRemove = Math.floor(Math.random() * (numberOfSkills -1 - 0 + 1) + 0)
             personaPage.deleteRandomSkill(indexToRemove)
             personaPage.removeSkillButton().should('have.length', 2)
         })
     })
-});
+})
