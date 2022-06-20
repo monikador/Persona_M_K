@@ -20,6 +20,14 @@ export class PersonaPage {
     familyStatusInput() { return cy.get('#react-select-5-input') }
     downloadPdfButton() { return cy.get('.kzcgIp') }
     pdfValidationInfo() { return cy.get('.icVnTA') }
+    skillsModal() { return cy.get('.ViOIT') }
+    addSkillButton() { return cy.get('.kVgWUh') }
+    removeSkillButton() { return this.skillsModal().find('.jDpGYr') } //miałam kilka elementów o takiej samej klasie itp. Podałam ze pierwszy ma się usunąć
+    skillsList() { return this.skillsModal().find('.eXeuib') }
+    skillsModalData() { return this.skillsModal().find('.iHieLf') }
+    skillsValuelButton() { return cy.get('.bumlOz').find('.iHieLf').eq(0) }
+    skillNameInput() { return cy.get('.eXeuib').eq(0) }
+    reachValueButton() {return cy.get('.bumlOz').find('[name="reach[2].value"]') }
     
     /*fillFullNameInput(fullName) { return this.fullNameInput().type(fullName) } 
     fillOccupation(occupation) { return this.occupationInput().type(occupation) }
@@ -50,11 +58,9 @@ export class PersonaPage {
         this.familyStatusInput().click()
         this.familyStatusInput().type(familyStatus).type('{enter}')
      }
-
      fillTitledata() {
         this.personaTitleInput().type(cy.fakeLibrary.faker.name.jobTitle())
      }
-
      fillTrendsData() {
          this.negativeTrendsInput().type(cy.fakeLibrary.faker.animal.type()).type('{enter}')
          this.negativeTrendsInput().click
@@ -67,8 +73,37 @@ export class PersonaPage {
      cleanData() {
          this.createNewButton().click()
      }
-
-     downloadPdf() {
+     openDownloadPDFModal() {
          this.downloadPdfButton().click().click()
+     }
+     addSkill() {
+         this.addSkillButton().click()
+     }
+     deleteSkill() {
+         this.removeSkillButton().eq(0).click({force: true})
+     }
+     deleteRandomSkill(indexToRemove) {
+        this.removeSkillButton().eq(indexToRemove).click({force: true})
+     }
+     changeSkillValue() { //slider 
+         this.skillsValuelButton().as('range').invoke('val', 30).trigger('change')
+     }
+     changeSkillName() {
+         this.skillNameInput().type('New name')
+         this.skillsModal().click()
+     }
+     countSkills() {
+         return this.skillsModalData().its('length')
+     }
+     increaseReachValue() {
+         this.reachValueButton().invoke('attr','max').then(value => 
+            { this.reachValueButton().invoke('val', value ).trigger('change') })
+     }
+     decreaseReachValue() {
+         this.reachValueButton().invoke('val', -125 ).trigger('change')
+     }
+     changeReachValue(randomReachValue, mathOperator) {
+         const valueOfChange = mathOperator === 'plus' ? 125 + randomReachValue : 125 - randomReachValue
+         this.reachValueButton().invoke('val', valueOfChange).trigger('change')
      }
 }
