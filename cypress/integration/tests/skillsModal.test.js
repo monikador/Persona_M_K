@@ -11,10 +11,9 @@ describe('skill modal', () => {
     })
 
     it("should add new skill", () => {
-        personaPage.countSkills().then(numberOfSkill => {
-            const defaultNumberOfSkills = numberOfSkill
+        personaPage.countSkills().then(numberOfSkills => {
             personaPage.addSkill()
-        personaPage.skillsList().should('have.length', (defaultNumberOfSkills + 1))
+        personaPage.skillsList().should('have.length', (numberOfSkills + 1))
         })
     })
     it("should increase skill value", () => {
