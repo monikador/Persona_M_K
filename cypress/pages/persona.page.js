@@ -139,7 +139,7 @@ export class PersonaPage {
         if (numberOfReach >= 6) {
             this.deleteRandomReach(0)
         }
-            this.reachAddButtonClick()
+        this.reachAddButtonClick()
      }
      //to co powyej mogę zapisać te tak jak tutaj
      addRandomMotivationYoBuy(numberOfMotivations) {

@@ -39,8 +39,8 @@ describe('reach modal', () => {
             personaPage.addRandomReach(numberOfReach)
             personaPage.countReach().then(numberOfReachElements => {
                 if(numberOfReachElements === (numberOfReach +1) || numberOfReachElements === 6)
-                reach = true
-                    expect(reach).to.be.true
+                    reach = true
+                expect(reach).to.be.true
                 // mogę to zrobić równie tak jak w motivation of buy czyli uyć expect([numberOfReach +1, 6]).to.include(numberOfReachElements)
             })
         })

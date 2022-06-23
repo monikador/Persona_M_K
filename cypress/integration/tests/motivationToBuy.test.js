@@ -16,7 +16,7 @@ describe('motivation to buy modal', () => {
             personaPage.motivationToBuyList().should('have.length', numberOfMotivations -1)
         })
     })
-    it.only('should add random Motivation to buy', () => {
+    it('should add random Motivation to buy', () => {
          personaPage.countMotivationToBuy().then(numberOfMotivations => {
             personaPage.addRandomMotivationYoBuy(numberOfMotivations)
             personaPage.countMotivationToBuy().then(numberOfMotivationElements => {
