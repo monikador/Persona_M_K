@@ -10,7 +10,7 @@ describe('clean data', () => {
         mainPage.open()
         mainPage.openPersonaPage()
         personaPage.fillTitledata()
-        personaPage.fillTrendsData()
+        personaPage.fillNegativeTrendsData()
         personaPage.cleanData()
         personaPage.personaTitleInput().should('be.empty')
         personaPage.personaTitleInput().should('have.value',"")
