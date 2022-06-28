@@ -11,10 +11,9 @@ describe('skill modal', () => {
     })
 
     it("should add new skill", () => {
-        personaPage.countSkills().then(numberOfSkill => {
-            const defaultNumberOfSkills = numberOfSkill
+        personaPage.countSkills().then(numberOfSkills => {
             personaPage.addSkill()
-        personaPage.skillsList().should('have.length', (defaultNumberOfSkills + 1))
+        personaPage.skillsList().should('have.length', numberOfSkills + 1)
         })
     })
     it("should increase skill value", () => {
@@ -28,7 +27,7 @@ describe('skill modal', () => {
     it('should delete random skill', () => {
         personaPage.countSkills().then(numberOfSkill => {
         personaPage.deleteSkill()
-        personaPage.skillsList().should('have.length', (numberOfSkill - 1))
+        personaPage.skillsList().should('have.length', numberOfSkill - 1)
         })
         personaPage.countSkills().then(numberOfSkills => {
             const indexToRemove = Math.floor(Math.random() * (numberOfSkills -1 - 0 + 1) + 0)
