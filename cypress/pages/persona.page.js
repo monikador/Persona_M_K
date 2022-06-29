@@ -11,9 +11,12 @@ export class PersonaPage {
     locationInput() { return cy.get('[name="location"]') }
     companySizeDropdown() { return cy.get('#react-select-3-input') }
     personaTitleInput() { return cy.get('.knrQfT') }
-    negativeTrendsInput() { return cy.get('#react-select-6-input') }
     negativeTrendsArea() { return cy.get('.frjSRX') }
+    negativeTrendsInput() { return cy.get('#react-select-6-input') }
     negativeTrendsRemoveButton() { return this.negativeTrendsArea().find('.css-xb97g8') }
+    positiveTrendsArea() { return cy.get('.dUfkhX') }
+    positiveTrendsInput() { return this.positiveTrendsArea().find('#react-select-7-input') }
+    positiveTrendsRemoveButton() { return this.positiveTrendsArea().find('.css-xb97g8') }
     //xx() { return cy.get(".frjsrx").find('.css-xb') }
     industryInput() { return cy.get('[name="industry"]') }
     educationInput() { return cy.get('#react-select-4-input') }
@@ -70,9 +73,13 @@ export class PersonaPage {
      fillTitledata() {
         this.personaTitleInput().type(cy.fakeLibrary.faker.name.jobTitle())
      }
-     fillTrendsData() {
+     fillNegativeTrendsData() {
          this.negativeTrendsInput().type(cy.fakeLibrary.faker.animal.type()).type('{enter}')
-         this.negativeTrendsInput().click
+         this.negativeTrendsInput().click()
+     }
+     fillPositiveTrendsData() {
+        this.positiveTrendsInput().type(cy.fakeLibrary.faker.animal.type()).type('{enter}')
+        this.positiveTrendsInput().click()
      }
 
      ////fillIndustryData() {
@@ -114,6 +121,18 @@ export class PersonaPage {
      changeReachValue(randomReachValue, mathOperator) {
          const valueOfChange = mathOperator === 'plus' ? 125 + randomReachValue : 125 - randomReachValue
          this.reachValueButton().invoke('val', valueOfChange).trigger('change')
+     }
+     countNegativeTrends() {
+        return this.negativeTrendsRemoveButton().its('length')
+     }
+     countPositiveTrends() {
+        return this.positiveTrendsRemoveButton().its('length')
+     }
+     deleteNegativeTrend(indexToRemove) {
+        return this.negativeTrendsRemoveButton().eq(indexToRemove).click({force: true})
+     }
+     deletePositiveTrend(indexToRemove) {
+        return this.positiveTrendsRemoveButton().eq(indexToRemove).click({force: true})
      }
      countMotivationToBuy() {
         return this.motivationToBuyList().its('length')
