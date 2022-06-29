@@ -27,10 +27,19 @@ export class PersonaPage {
     addSkillButton() { return cy.get('.kVgWUh') }
     removeSkillButton() { return this.skillsModal().find('.jDpGYr') } //miałam kilka elementów o takiej samej klasie itp. Podałam ze pierwszy ma się usunąć
     skillsList() { return this.skillsModal().find('.eXeuib') }
-    skillsModalData() { return this.skillsModal().find('.iHieLf') }
     skillsValuelButton() { return cy.get('.bumlOz').find('.iHieLf').eq(0) }
     skillNameInput() { return cy.get('.eXeuib').eq(0) }
-    reachValueButton() {return cy.get('.bumlOz').find('[name="reach[2].value"]') }
+    reachModal() { return cy.get('.dGnumD').eq(0) }
+    reachList() { return this.reachModal().find('.fCzdIm') }
+    reachValueButton() { return cy.get('.bumlOz').find('[name="reach[2].value"]') }
+    reachRemoveButton() { return this.reachModal().find('.jDpGYr') }
+    reachAddButton() { return this.reachModal().find('.kVgWUh') }
+    reachAddList() { return cy.get('.css-11unzgr').eq(0) }
+    motivationToBuyModal() { return cy.get('.dGnumD').eq(1) }
+    motivationToBuyList() { return this.motivationToBuyModal().find('.fCzdIm') }
+    motivationToBuyRemoveButton() { return this.motivationToBuyModal().find('.jDpGYr') }
+    motivationToBuyAddButton() {return this.motivationToBuyModal().find('.kVgWUh') }
+    motivationToBuyAddList() { return cy.get('.css-11unzgr').eq(0) }
     
     /*fillFullNameInput(fullName) { return this.fullNameInput().type(fullName) } 
     fillOccupation(occupation) { return this.occupationInput().type(occupation) }
@@ -100,7 +109,7 @@ export class PersonaPage {
          this.skillsModal().click()
      }
      countSkills() {
-         return this.skillsModalData().its('length')
+         return this.skillsList().its('length')
      }
      increaseReachValue() {
          this.reachValueButton().invoke('attr','max').then(value => 
@@ -125,4 +134,39 @@ export class PersonaPage {
      deletePositiveTrend(indexToRemove) {
         return this.positiveTrendsRemoveButton().eq(indexToRemove).click({force: true})
      }
+     countMotivationToBuy() {
+        return this.motivationToBuyList().its('length')
+     }
+     deleteRandomMotivationToBuy(indexToRemove) {
+        this.motivationToBuyRemoveButton().eq(indexToRemove).click({force: true})
+     }
+     countReach() {
+        return this.reachList().its('length')
+     }
+     deleteRandomReach(indexToRemove) {
+        this.reachRemoveButton().eq(indexToRemove).click({force: true})
+     }
+     reachAddButtonClick() {
+        this.reachAddButton().click()
+        this.reachAddList().click()
+     }
+     motivationToBuyAddButtonClick() {
+        this.motivationToBuyAddButton().click()
+        this.motivationToBuyAddList().click() 
+     }
+     addRandomReach(numberOfReach) {
+        if (numberOfReach >= 6) {
+            this.deleteRandomReach(0)
+        }
+        this.reachAddButtonClick()
+     }
+     //to co powyej mogę zapisać te tak jak tutaj
+     addRandomMotivationYoBuy(numberOfMotivations) {
+        if (numberOfMotivations < 5) {
+            this.motivationToBuyAddButtonClick()
+         } else { 
+            this.deleteRandomMotivationToBuy(0)
+            this.motivationToBuyAddButtonClick()
+        }
+    }
 }
