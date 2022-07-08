@@ -1,12 +1,25 @@
-const { defineConfig } = require('cypress')
+const { defineConfig } = require('cypress');
+const { beforeRunHook, afterRunHook } = require('cypress-mochawesome-reporter/lib');
 
 module.exports = defineConfig({
-  video: false,
+  reporter: 'cypress-mochawesome-reporter',
+  reporterOptions: {
+    charts: true,
+    video: false,
+    reportPageTitle: 'custom-title',
+    embeddedScreenshots: true,
+    inlineAssets: true,
+    saveAllAttempts: false,
+  },
   e2e: {
-    // We've imported your old cypress plugins here.
-    // You may want to clean this up later by importing these.
     setupNodeEvents(on, config) {
-      return require('./cypress/plugins/index.js')(on, config)
+      on('before:run', async (details) => {
+        await beforeRunHook(details);
+      });
+
+      on('after:run', async () => {
+        await afterRunHook();
+      });
     },
   },
-})
+});
