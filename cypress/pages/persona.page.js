@@ -40,6 +40,7 @@ export class PersonaPage {
     motivationToBuyRemoveButton() { return this.motivationToBuyModal().find('.jDpGYr') }
     motivationToBuyAddButton() {return this.motivationToBuyModal().find('.kVgWUh') }
     motivationToBuyAddList() { return cy.get('.css-11unzgr').eq(0) }
+    descriptionCardRemoveButton() { return cy.get('.caLFlW') }
     
     /*fillFullNameInput(fullName) { return this.fullNameInput().type(fullName) } 
     fillOccupation(occupation) { return this.occupationInput().type(occupation) }
@@ -168,5 +169,11 @@ export class PersonaPage {
             this.deleteRandomMotivationToBuy(0)
             this.motivationToBuyAddButtonClick()
         }
+    }
+    countDescriptionCards() {
+        return this.descriptionCardRemoveButton().its('length')
+    }
+    deleteDescriptionCard(indexToRemove) {
+       return this.descriptionCardRemoveButton().eq(indexToRemove).click({force: true})
     }
 }
